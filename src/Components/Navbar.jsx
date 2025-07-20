@@ -6,13 +6,6 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", hash: "about" },
-    { name: "Services", hash: "services" },
-    { name: "Contact", hash: "contact" },
-  ];
-
   const handleScroll = (e, hash) => {
     e.preventDefault();
 
@@ -32,17 +25,20 @@ const Navbar = () => {
         <Link to="/">SnapDiet</Link>
       </div>
       <ul className="navbar-links">
-        {navLinks.map((link, idx) => (
-          <li key={idx}>
-            {link.hash ? (
-              <a href={`#${link.hash}`} onClick={(e) => handleScroll(e, link.hash)}>
-                {link.name}
-              </a>
-            ) : (
-              <Link to={link.path}>{link.name}</Link>
-            )}
-          </li>
-        ))}
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <a href="#about" onClick={(e) => handleScroll(e, "about")}>
+            About
+          </a>
+        </li>
+        <li>
+          <Link to="/services">Services</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
       </ul>
     </nav>
   );
