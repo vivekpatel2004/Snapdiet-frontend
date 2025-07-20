@@ -22,7 +22,6 @@ function App() {
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          // Retry after short delay if element not found yet
           setTimeout(handleScroll, 100);
         }
       } else {
@@ -30,10 +29,9 @@ function App() {
       }
     };
 
-    // Delay scroll only until page finishes loading
     const scrollTimeout = setTimeout(() => {
       handleScroll();
-    }, 100); // small delay ensures DOM is rendered
+    }, 100);
 
     return () => clearTimeout(scrollTimeout);
   }, [location]);
@@ -59,13 +57,13 @@ function App() {
               <main>
                 <Hero />
                 <div id="about"><About /></div>
-                <div id="services"><Services /></div>
-                <div id="cards"><Cards /></div>
-                <div id="contact"><Contact /></div>
+                <Cards />
                 <Footer />
               </main>
             }
           />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/result" element={<Result />} />
         </Routes>
       )}
